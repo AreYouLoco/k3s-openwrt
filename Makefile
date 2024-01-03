@@ -1,7 +1,7 @@
 VERSION  ?= $(shell head -1 VERSIONS)
 PVERSION ?= 1
-ARCH     ?= x86_64
-suffix   := $(subst -x86_64,,-$(ARCH))
+ARCH     ?= arm
+suffix   := $(subst -arm,,-$(ARCH))
 
 FILES = $(shell find files/ -type f)
 DIR   = build/$(VERSION)/$(ARCH)
