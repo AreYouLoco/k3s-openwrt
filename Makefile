@@ -40,7 +40,7 @@ $(DIR)/data: $(FILES)
 	mkdir -p "$@/usr/bin"
 	cp -r files/* "$@"
 	curl -sfLo "$@/usr/bin/k3s" \
-		https://github.com/k3s-io/k3s/releases/download/v$(VERSION)/k3s${suffix}
+		https://github.com/k3s-io/k3s/releases/download/v$(VERSION)/k3s-armhf
 	chmod a+x "$@/usr/bin/k3s"
 
 $(DIR)/pkg/data.tar.gz: $(DIR)/data
