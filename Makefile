@@ -29,14 +29,12 @@ define Package/k3s/description
   Packaged binary builds of official K3S
 endef
 
-Build/Compile:=:
-
 define Download/binaries
   URL_FILE:=k3s-armhf
   URL:=@GITHUB/k3s-io/k3s/releases/download/v$(VERSION)/k3s-armhf
 endef
 
-define Package/k3s/build
+define Build/Compile
 	$(eval $(call Download,binaries))
 endef
 
