@@ -30,8 +30,8 @@ define Package/k3s/description
 endef
 
 define Download/binaries
-  URL_FILE:=k3s-armhf
-  URL:=@GITHUB/k3s-io/k3s/releases/download/v$(VERSION)/k3s-armhf
+  FILE:=k3s-armhf
+  URL:=@GITHUB/k3s-io/k3s/releases/download/v$(VERSION)
 endef
 
 define Build/Compile
