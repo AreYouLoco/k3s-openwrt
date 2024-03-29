@@ -1,21 +1,61 @@
-VERSION  ?= $(shell head -1 VERSIONS)
-PVERSION ?= 1
-ARCH     ?= armhf
-suffix   := $(subst -armhf,,-$(ARCH))
+#
+## Copyright (C) 2024 AreYouLoco?
+#
+## This is free software, licensed under the GNU General Public License v3.
+# See /LICENSE for more information.
+#
 
-FILES = $(shell find files/ -type f)
-DIR   = build/$(VERSION)/$(ARCH)
-OUT   = build/k3s_$(VERSION)_$(ARCH).opk
+include $(TOPDIR)/rules.mk
 
-define CONTROL
-Package: k3s
-Version: ${VERSION}-${PVERSION}
-Architecture: $(ARCH)
-Maintainer: Johannes 'fish' Ziemke
-Depends: iptables iptables-mod-extra kmod-ipt-extra iptables-mod-extra kmod-br-netfilter ca-certificates
-Description: The Docker Engine packages for OpenWrt
+PKG_NAME:=k3s
+PKG_VERSION?=$(shell head -1 VERSIONS)
+PKG_RELEASE:=$(AUTORELEASE)
+
+PKG_MAINTAINER:=Don't count me for sure
+PKG_LICENSE:=GPL-2.0-only
+PKG_LICENSE_FILES:=LICENSE.md
+PKG_URL:=https://github.com/k3s-io/k3s/
+PKG_ARCH:=arm_cortex-a9_vfpv3-d16
+ARCH?=armhf
+suffix:=$(subst -armhf,,-$(ARCH))
+
+include $(INCLUDE_DIR)/package.mk
+
+define Package/k3s
+  TITLE:=K3s Lightweight Kubernetes Engine
+  DEPENDS:=+iptables iptables-mod-extra kmod-ipt-extra iptables-mod-extra kmod-br-netfilter ca-certificates
 endef
-export CONTROL
+
+define Package/k3s/description
+  Packaged binary builds of official K3S
+endef
+
+define Package/k3s/conffiles
+/etc/config/k3s
+endef
+
+Build/Compile:=:
+
+define Package/k3s/download
+	mkdir -p "$@/usr/bin"
+	cp -r files/* "$@"
+	curl -sfLo "$@/usr/bin/k3s" \
+		https://github.com/rancher/k3s/releases/download/v$(VERSION)/k3s${suffix}
+	chmod a+x "$@/usr/bin/k3s"
+endef
+
+define Package/k3s/install
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) ./files/k3s $(1)/usr/bin/k3s
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/k3s.init $(1)/etc/init.d/k3s
+
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_CONF) ./files/k3s.uci $(1)/etc/config/k3s
+endef
+
+$(eval $(call BuildPackage,k3s))
 
 .PHONY: all
 all: $(OUT)
@@ -40,7 +80,7 @@ $(DIR)/data: $(FILES)
 	mkdir -p "$@/usr/bin"
 	cp -r files/* "$@"
 	curl -sfLo "$@/usr/bin/k3s" \
-		https://github.com/k3s-io/k3s/releases/download/v$(VERSION)/k3s-armhf
+		https://github.com/k3s-io/k3s/releases/download/v$(VERSION)/k3s${suffix}
 	chmod a+x "$@/usr/bin/k3s"
 
 $(DIR)/pkg/data.tar.gz: $(DIR)/data
