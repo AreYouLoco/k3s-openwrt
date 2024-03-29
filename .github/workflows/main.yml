@@ -29,5 +29,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           name: ${{ matrix.arch }}-${{ matrix.version }}-package
+          prerelease: true,
           # path: bin/packages/${{ matrix.arch }}/action/*.ipk
           path: bin/packages/*/action/*.ipk
