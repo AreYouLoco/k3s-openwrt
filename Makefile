@@ -47,8 +47,7 @@ define Package/k3s/install
 endef
 
 define Build/Compile
-	$(eval $(call Download,binaries))
-	$(eval $(call Package/k3s/install))
+	$(call Download,binaries)
 endef
 
 $(eval $(call BuildPackage,k3s))
