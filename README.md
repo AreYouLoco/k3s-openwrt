@@ -1,4 +1,4 @@
-[![Makefile CI](https://github.com/AreYouLoco/k3s-turris/actions/workflows/makefile.yml/badge.svg)](https://github.com/AreYouLoco/k3s-turris/actions/workflows/makefile.yml)
+[![Makefile CI](https://github.com/AreYouLoco/k3s-turris/actions/workflows/makefile.yml/badge.svg)](https://github.com/AreYouLoco/k3s-turris/actions/workflows/main.yml)
 
 # k3s on Turris Router
 Makefile to generate OpenWrt .opkg packages from official k3s binaries.
