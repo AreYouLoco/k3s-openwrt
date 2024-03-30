@@ -40,7 +40,7 @@ define Build/Prepare
 endef
 
 define Build/Compile
-$(eval $(call Download,binaries)
+$(eval $(call Download,binaries))
 endef
 
 define Package/k3s/install
