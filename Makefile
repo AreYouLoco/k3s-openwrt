@@ -35,19 +35,23 @@ define Download/binaries
   HASH:=9b5c6f3df99bcb3154ae76b6d73b6d31aa3ea9c8ecb5d91b5bd848107a749b78
 endef
 
+define Build/Prepare
+	mkdir -p $(PKG_BUILD_DIR)
+endef
+
+define Build/Compile
+$(eval $(call Download,binaries)
+endef
+
 define Package/k3s/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) ./files/usr/bin/k3s-wrapper $(1)/usr/bin/k3s-wrapper
 
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(BUILD_DIR)/k3s-armhf $(1)/usr/bin/k3s
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/k3s-armhf $(1)/usr/bin/k3s
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/etc/init.d/k3s $(1)/etc/init.d/k3s
-endef
-
-define Build/Compile
-	$(call Download,binaries)
 endef
 
 $(eval $(call BuildPackage,k3s))
