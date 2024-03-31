@@ -29,15 +29,15 @@ define Package/k3s/description
   Packaged binary builds of official K3S
 endef
 
-define Package/k3s/download
+define Download/binaries
   FILE:=k3s-armhf
   URL:=https://github.com/k3s-io/k3s/releases/download/v1.29.3%2Bk3s1
   HASH:=9b5c6f3df99bcb3154ae76b6d73b6d31aa3ea9c8ecb5d91b5bd848107a749b78
 endef
 
-
 define Build/Prepare
-	mkdir -p $(PKG_BUILD_DIR)
+	mkdir -p $(PKG_BUILD_DIR) $(DL_DIR)
+	$(call Download,binaries)
 	cp $(DL_DIR)/k3s-armhf $(PKG_BUILD_DIR)/k3s
 endef
 
