@@ -36,8 +36,14 @@ define Download/binaries
 endef
 
 define Build/Prepare
-	mkdir -p $(PKG_BUILD_DIR) $(DL_DIR)
+	mkdir -p $(DL_DIR)
+	echo $(DL_DIR)
+	mkdir -p $(PKG_BUILD_DIR)
+	echo $(PKG_BUILD_DIR)
+	cd $(DL_DIR)
+	pwd
 	$(call Download,binaries)
+	ls $(DL_DIR)
 	cp $(DL_DIR)/k3s-armhf $(PKG_BUILD_DIR)/k3s
 endef
 
