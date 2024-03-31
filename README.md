@@ -32,7 +32,8 @@ config zone
 Run `make` to build the default version
 
 ## TODO
-Separate service files to k3s-master and k3s-agent
-Add uci globals with TOKEN of a master node for agent
-Work on service mounts
-Add gh-pages with ready-to-use repository
+- Separate service files to k3s-master and k3s-agent
+- Add uci globals with TOKEN of a master node for agent
+- Work on service mounts
+- Add gh-pages with ready-to-use repository
+- Add builds for other supported architectures
