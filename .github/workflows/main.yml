@@ -27,8 +27,9 @@ jobs:
 
       - name: Upload ipk packages
         uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           name: ${{ matrix.arch }}-${{ matrix.version }}-package
           prerelease: true,
           # path: bin/packages/${{ matrix.arch }}/action/*.ipk
-          path: bin/packages/*/action/*.ipk
+          files: bin/packages/*/action/*.ipk
