@@ -1,7 +1,7 @@
 [![Build Packages](https://github.com/AreYouLoco/k3s-turris/actions/workflows/main.yml/badge.svg)](https://github.com/AreYouLoco/k3s-turris/actions/workflows/main.yml)
 
 # k3s on Turris Router
-Makefile to generate OpenWrt .opkg packages from official k3s binaries.
+Makefile to generate OpenWrt .ipkg packages from official k3s binaries for Turris Omnia router. But should work on any armhf device.
 
 ## Usage
 This requires a custom kernel with support for various cgroup, namespaces, vxlan, cfs
@@ -29,6 +29,4 @@ config zone
 ```
 
 ## Building
-Run `make` to build the default version for `x86_64`. You can override ARCH and
-VERSION, e.g `make ARCH=armhf`. See ARCHS and VERSIONS files for available
-architectures and versions.
+Run `make` to build the default version
