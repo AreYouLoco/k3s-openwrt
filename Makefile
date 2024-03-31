@@ -38,16 +38,15 @@ endef
 define Build/Prepare
 	mkdir -p $(DL_DIR)
 	echo $(DL_DIR)
-	mkdir -p $(PKG_BUILD_DIR)
-	echo $(PKG_BUILD_DIR)
 	cd $(DL_DIR)
 	pwd
 	$(call Download,binaries)
 	ls $(DL_DIR)
-	cp $(DL_DIR)/k3s-armhf $(PKG_BUILD_DIR)/k3s
 endef
 
 define Build/Compile
+	mkdir -p $(PKG_BUILD_DIR)
+	ls $(PKG_BUILD_DIR)
 endef
 
 define Package/k3s/install
@@ -55,7 +54,7 @@ define Package/k3s/install
 	$(INSTALL_BIN) ./files/usr/bin/k3s-wrapper $(1)/usr/bin/k3s-wrapper
 
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/k3s $(1)/usr/bin/k3s
+	$(INSTALL_BIN) $(DL_DIR)/k3s-armhf $(1)/usr/bin/k3s
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/etc/init.d/k3s $(1)/etc/init.d/k3s
