@@ -1,4 +1,5 @@
 [![Build Packages](https://github.com/AreYouLoco/k3s-turris/actions/workflows/main.yml/badge.svg)](https://github.com/AreYouLoco/k3s-turris/actions/workflows/main.yml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 # k3s on Turris Router
 Makefile to generate OpenWrt .ipkg packages from official k3s binaries for Turris Omnia router. But should work on any armhf device.
