@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=k3s
-PKG_VERSION:=1.29.3+k3s1
+PKG_VERSION:=v1.30.0+k3s1
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_MAINTAINER:=Don't count me for sure
@@ -31,8 +31,8 @@ endef
 
 define Download/binaries
   FILE:=k3s-armhf
-  URL:=https://github.com/k3s-io/k3s/releases/download/v1.29.3%2Bk3s1
-  HASH:=9b5c6f3df99bcb3154ae76b6d73b6d31aa3ea9c8ecb5d91b5bd848107a749b78
+  URL:=https://github.com/k3s-io/k3s/releases/download/v1.30.0%2Bk3s1
+  HASH:=73e830f7c3e9bc774fe3fcfaaba82ce6ea04498592d26a8aa1a58e75d9837166
 endef
 
 define Build/Prepare
